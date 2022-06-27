@@ -1,9 +1,18 @@
 class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        map = {}
-        for i in nums:
-            if i in map:
-                return True
+    def majorityElement(self, nums):
+        count = 0
+        max = 0
+        for x in nums:
+            if count==0:
+                max = x
+                count = 1
+            elif max == x:
+                count +=1
             else:
-                map[i] = None
-        return False
+                count -=1
+        return max
+
+if __name__ == '__main__':
+    # begin
+    s = Solution()
+    print(s.majorityElement([2,2,1,1,1,2,2]))
