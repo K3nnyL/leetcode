@@ -12,3 +12,4 @@ if __name__ == '__main__':
     # begin
     s = Solution()
     print(s.containsDuplicate([1,2,3,4]))
+
