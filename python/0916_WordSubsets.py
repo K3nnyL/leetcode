@@ -1,22 +1,21 @@
 class Solution(object):
     def wordSubsets(self, A, B):
-        def count(word):
-            ans = [0] * 26
+        def lettercheck(word):
+            ans = [0]*26
             for letter in word:
-                ans[ord(letter) - ord('a')] += 1
+                ans[ord(letter)-ord("a")] +=1
             return ans
-
-        bmax = [0] * 26
+        bcount = [0]*26
+        res = []
         for b in B:
-            for i, c in enumerate(count(b)):
-                bmax[i] = max(bmax[i], c)
-
-        ans = []
+            for i,c in enumerate(lettercheck(b)):
+                bcount[i] = max(bcount[i],c)
         for a in A:
+            if all(x>=y for x,y in zip(lettercheck(a),bcount)):
+                res.append(a)
+        return res
 
-            if all(x >= y for x, y in zip(count(a), bmax)):
-                ans.append(a)
-        return ans
+
 
 
 if __name__ == '__main__':
